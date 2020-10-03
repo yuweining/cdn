@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: 3.8
 
-      run: |
+      - run: |
         cd logi.im/api/sentence
         python index.py
 
