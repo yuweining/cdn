@@ -1,11 +1,8 @@
 {
   "name": "logicdn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Static CDN for Personal Use",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "index.mjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vcheckzen/cdn.git"

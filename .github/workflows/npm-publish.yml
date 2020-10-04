@@ -8,7 +8,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "5 0 * * *"
+    - cron: "5 16 * * *"
 
 jobs:
   publish-npm:
@@ -22,10 +22,19 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Generate api data
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+
+      - name: Generate data
         run: |
           cd logi.im/api/sentence
           python index.py
+
+      - name: Update version
+        run: node --experimental-modules index.mjs
 
       - name: Commit files
         run: |
@@ -39,13 +48,8 @@ jobs:
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-
-      - run: |
+      - name: Publish package
+        run: |
           npm version patch
           npm publish
         env:
