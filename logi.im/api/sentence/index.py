@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import re
 import json
+import re
 from datetime import datetime
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -127,4 +127,9 @@ class Api(object):
         })
 
 
-Api().save()
+for i in range(3):
+    try:
+        Api().save()
+        break
+    except:
+        pass
