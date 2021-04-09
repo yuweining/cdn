@@ -4,9 +4,6 @@ env:
   TZ: Asia/Shanghai
 
 on:
-  push:
-    branches:
-      - master
   schedule:
     - cron: "0 17 * * *"
 
