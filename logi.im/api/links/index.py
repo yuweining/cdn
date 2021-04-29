@@ -86,8 +86,8 @@ def check_healthy():
     for link in links:
         link['pageOnline'] = html_ok(link['link'])
         link['avatarOnline'] = img_ok(link['avatar'])
-        if link['pageOnline'] and link['avatarOnline']:
-            continue
+        # if link['pageOnline'] and link['avatarOnline']:
+        #     continue
 
         print(link)
 
