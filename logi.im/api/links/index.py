@@ -1,15 +1,14 @@
 import re
 import json
+import random
 from base64 import b64decode
 
 import requests
-from bs4 import BeautifulSoup
 
 TIME_OUT = 15
 MAX_TRY = 10
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
 PAGE = 'https://logi.im/about.html'
-SELECTOR = '.link-box a'
 WHITE_LIST = [
     "myql.xyz",
     "zpblogs.cn",
@@ -42,18 +41,6 @@ def get(url,  headers={}, **args):
         },
         **args
     )
-
-
-def get_links():
-    soup = BeautifulSoup(get(PAGE).text, 'html.parser')
-    return list(map(
-        lambda link: {
-            'link': b64decode(link.get('href').split('/go/').pop()).decode('utf-8'),
-            'name': link.select('.title')[0].get_text().strip(),
-            'avatar': link.select('img')[0].get('src'),
-        },
-        soup.select(SELECTOR)
-    ))
 
 
 def html_ok(url):
@@ -92,7 +79,9 @@ def img_ok(url):
 
 
 def check_healthy():
-    links = get_links()
+    with open('data.json', mode='r', encoding='utf-8') as f:
+        links = json.load(f)
+
     for link in links:
         link['pageOnline'] = html_ok(link['link'])
         link['avatarOnline'] = img_ok(link['avatar'])
@@ -101,6 +90,7 @@ def check_healthy():
 
         print(link)
 
+    random.shuffle(links)
     with open('data.json', mode='w', encoding='utf-8') as f:
         json.dump(links, f,  ensure_ascii=False, sort_keys=True, indent=4)
 
