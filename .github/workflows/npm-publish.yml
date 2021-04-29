@@ -4,6 +4,7 @@ env:
   TZ: Asia/Shanghai
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 17 * * *"
 
@@ -14,8 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-            ref: master
-      
+          ref: master
+
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -52,4 +53,5 @@ jobs:
 
       - name: Refresh cdn
         run: |
-          for i in {1..3}; do curl -s https://purge.jsdelivr.net/npm/logicdn/logi.im/api/sentence/data.json ; sleep 60 ; done          
+          for i in {1..6}; do curl -s https://purge.jsdelivr.net/npm/logicdn/logi.im/api/sentence/data.json ; sleep 30 ; done
+          for i in {1..6}; do curl -s https://purge.jsdelivr.net/npm/logicdn/logi.im/api/links/data.json ; sleep 30 ; done
