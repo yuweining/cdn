@@ -17,21 +17,25 @@ jobs:
         with:
           ref: master
 
-      - name: Setup python
+      - name: Setup python and poetry
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
+      - uses: Gr1N/setup-poetry@v4
 
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
           registry-url: https://registry.npmjs.org/
 
       - name: Generate data
         run: |
           cd logi.im/api/sentence
           python index.py
+          cd ../links
+          poetry install
+          poetry run python index.py
 
       - name: Update version
         run: node --experimental-modules index.mjs
