@@ -13,11 +13,11 @@ PAGE = 'https://logi.im/about.html'
 WHITE_LIST = [
     "myql.xyz",
     "zpblogs.cn",
+    "sevencdn.com",
+    "spoience.com"
     "qlogo.cn",
     "zhimg.com",
     "jsdelivr.net",
-    "sevencdn.com",
-    "spoience.com"
 ]
 
 
