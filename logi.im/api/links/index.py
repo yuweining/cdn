@@ -16,6 +16,7 @@ WHITE_LIST = [
     "zhimg.com",
     "jsdelivr.net",
     "sevencdn.com",
+    "spoience.com"
 ]
 
 
@@ -56,7 +57,7 @@ def html_ok(url):
     except Exception:
         return False
 
-    return False
+    return Falsec
 
 
 def img_ok(url):
