@@ -8,7 +8,7 @@ apis=(
 
 refresh() {
     for i in {1..6}; do
-        curl "$1"
+        curl -s "$1"
         sleep 30
     done
 }
