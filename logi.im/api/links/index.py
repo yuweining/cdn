@@ -5,8 +5,8 @@ from base64 import b64decode
 
 import requests
 
-TIME_OUT = 15
-MAX_TRY = 10
+TIME_OUT = 8
+MAX_TRY = 5
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
 PAGE = 'https://logi.im/about.html'
 WHITE_LIST = [
