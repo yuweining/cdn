@@ -87,6 +87,7 @@ def check_healthy():
     def check(link):
         link['pageOnline'] = html_ok(link['link'])
         link['avatarOnline'] = img_ok(link['avatar'])
+        print(link)
         return link
 
     futures, pool = [], ThreadPoolExecutor(len(links))

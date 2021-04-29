@@ -56,6 +56,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
       - name: Refresh cdn
-        run: |
-          for i in {1..6}; do curl -s https://purge.jsdelivr.net/npm/logicdn/logi.im/api/sentence/data.json ; sleep 30 ; done
-          for i in {1..6}; do curl -s https://purge.jsdelivr.net/npm/logicdn/logi.im/api/links/data.json ; sleep 30 ; done
+        run: bash refresh.sh
