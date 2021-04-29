@@ -58,7 +58,7 @@ def html_ok(url):
     except Exception:
         return False
 
-    return Falsec
+    return False
 
 
 def img_ok(url):
