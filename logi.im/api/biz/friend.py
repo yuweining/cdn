@@ -54,7 +54,8 @@ class FriendLinkDoctor:
     @staticmethod
     def save_image(friend):
         requests.packages.urllib3.disable_warnings()
-
+        link = friend['link']
+        
         def save():
             resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
 
@@ -66,7 +67,7 @@ class FriendLinkDoctor:
                 if suffix == 'jpeg':
                     suffix = 'jpg'
 
-            link = friend['link']
+            
             name = f'{IMG_PATH}/{urlsplit(link).netloc}.{suffix}'
 
             img = Image.open(io.BytesIO(resp.content))
