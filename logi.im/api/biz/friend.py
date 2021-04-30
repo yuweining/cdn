@@ -54,20 +54,21 @@ class FriendLinkDoctor:
     @staticmethod
     def save_image(friend):
         requests.packages.urllib3.disable_warnings()
-        resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
-
-        path = urlsplit(friend['avatar']).path
-        if path.find('.') > 0:
-            suffix = path.split('.')[-1]
-        else:
-            suffix = resp.headers.get('content-type').split('/')[-1]
-            if suffix == 'jpeg':
-                suffix = 'jpg'
-
-        link = friend['link']
-        name = f'{IMG_PATH}/{urlsplit(link).netloc}.{suffix}'
 
         def save():
+            resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
+
+            path = urlsplit(friend['avatar']).path
+            if path.find('.') > 0:
+                suffix = path.split('.')[-1]
+            else:
+                suffix = resp.headers.get('content-type').split('/')[-1]
+                if suffix == 'jpeg':
+                    suffix = 'jpg'
+
+            link = friend['link']
+            name = f'{IMG_PATH}/{urlsplit(link).netloc}.{suffix}'
+
             img = Image.open(io.BytesIO(resp.content))
             img.thumbnail((200, 200))
             img.save(name)
