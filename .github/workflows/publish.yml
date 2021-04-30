@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Publish to NPM
 
 env:
   TZ: Asia/Shanghai
@@ -6,7 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 17 * * *"
+    - cron: "30 17 * * *"
 
 jobs:
   publish-npm:
@@ -31,11 +31,10 @@ jobs:
 
       - name: Generate data
         run: |
-          cd logi.im/api/sentence
-          python index.py
-          cd ../links
+          cd logi.im/api
           poetry install
-          poetry run python index.py
+          poetry run python friend.py
+          poetry run python sentence.py
 
       - name: Update version
         run: node --experimental-modules index.mjs

@@ -6,6 +6,7 @@ from datetime import datetime
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+DATA_PATH = 'asset/data/sentence.json'
 iPhone = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'
 
 
@@ -114,7 +115,7 @@ class Api(object):
         ]
 
     def save(self):
-        with open('data.json', 'w') as f:
+        with open(DATA_PATH, 'w') as f:
             f.write(self.format())
 
     def format(self):
@@ -127,9 +128,10 @@ class Api(object):
         })
 
 
-for i in range(3):
-    try:
-        Api().save()
-        break
-    except:
-        pass
+if __name__ == '__main__':
+    for _ in range(3):
+        try:
+            Api().save()
+            break
+        except Exception:
+            pass

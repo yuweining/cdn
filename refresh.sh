@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-prefix='https://purge.jsdelivr.net/npm/logicdn/logi.im/api'
+prefix='https://purge.jsdelivr.net/npm/logicdn/logi.im/api/asset/data'
 apis=(
-    "$prefix/sentence/data.json"
-    "$prefix/links/data.json"
+    "$prefix/sentence.json"
+    "$prefix/friend.json"
 )
 
 refresh() {

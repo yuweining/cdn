@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 from urllib.request import Request, urlopen
 
+CONF_PATH = 'asset/data/festival.json'
 api = {
     'holiday': 'http://api.comm.miui.com/holiday/holiday.jsp',
     'festival': 'http://pc.suishenyun.net/peacock/api/h5/festival'
@@ -47,17 +48,18 @@ def save(y):
         }
     })
 
-    holiday = get_json(api['holiday'], lambda d: list(filter(lambda e: e['year'] == y, d['holiday']))[0])
+    holiday = get_json(api['holiday'], lambda d: list(
+        filter(lambda e: e['year'] == y, d['holiday']))[0])
 
-    with open('data.json', 'w') as f:
+    with open(CONF_PATH, 'w') as f:
         f.write(json.dumps({
             **holiday,
             'festival': festival,
         }))
 
 
-if os.path.exists('data.json'):
-    with open('data.json') as f:
+if os.path.exists(CONF_PATH):
+    with open(CONF_PATH) as f:
         data = json.loads(f.read())
 
     year = datetime.now().year
