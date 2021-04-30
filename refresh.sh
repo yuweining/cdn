@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-prefix='https://purge.jsdelivr.net/npm/logicdn/logi.im/api/asset/data'
+prefix='https://purge.jsdelivr.net/npm/logicdn/logi.im/api/asset'
 apis=(
-    "$prefix/sentence.json"
-    "$prefix/friend.json"
+    "$prefix/data/sentence.json"
+    "$prefix/data/friend.json"
+    "$prefix/img/"
 )
 
 refresh() {
-    for i in {1..6}; do
+    for i in {1..3}; do
         curl -s "$1"
-        sleep 30
+        sleep 20
     done
 }
 
