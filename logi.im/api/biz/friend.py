@@ -13,8 +13,8 @@ PAGE = 'https://logi.im/about.html'
 WHITE_LIST = [
     "myql.xyz",
     "zpblogs.cn",
+    "spoience.com",
     "sevencdn.com",
-    "spoience.com"
     "qlogo.cn",
     "zhimg.com",
     "jsdelivr.net",
@@ -58,7 +58,7 @@ def html_ok(url):
     except Exception:
         return False
 
-    return Falsec
+    return False
 
 
 def img_ok(url):
