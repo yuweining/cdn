@@ -66,7 +66,6 @@ class FriendLinkDoctor:
                 suffix = resp.headers.get('content-type').split('/')[-1]
                 if suffix == 'jpeg':
                     suffix = 'jpg'
-
             
             name = f'{IMG_PATH}/{urlsplit(link).netloc}.{suffix}'
 
