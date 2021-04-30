@@ -22,7 +22,7 @@ jobs:
         run: |
           cd logi.im/api
           poetry install
-          poetry run python friend.py init
+          poetry run python biz/friend.py init
 
       - name: Commit files
         run: |

@@ -33,8 +33,8 @@ jobs:
         run: |
           cd logi.im/api
           poetry install
-          poetry run python friend.py
-          poetry run python sentence.py
+          poetry run python biz/friend.py
+          poetry run python biz/sentence.py
 
       - name: Update version
         run: node --experimental-modules index.mjs
