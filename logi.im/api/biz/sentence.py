@@ -127,6 +127,9 @@ class Api(object):
             'sentences': list(s.data for s in self.sentences)
         })
 
+    def pure_data(self):
+        return list(s.data for s in self.sentences)
+
 
 if __name__ == '__main__':
     for _ in range(3):

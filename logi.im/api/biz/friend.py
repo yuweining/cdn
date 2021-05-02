@@ -55,7 +55,7 @@ class FriendLinkDoctor:
     def save_image(friend):
         requests.packages.urllib3.disable_warnings()
         link = friend['link']
-        
+
         def save():
             resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
 
@@ -66,7 +66,7 @@ class FriendLinkDoctor:
                 suffix = resp.headers.get('content-type').split('/')[-1]
                 if suffix == 'jpeg':
                     suffix = 'jpg'
-            
+
             name = f'{IMG_PATH}/{urlsplit(link).netloc}.{suffix}'
 
             img = Image.open(io.BytesIO(resp.content))
@@ -122,12 +122,14 @@ class FriendLinkDoctor:
 
         self.save_config(results)
 
+        return results
+
     def check_boby(self):
         def check(friend):
             friend['online'] = self.is_online(friend['link'])
             return friend
 
-        self.concurrent_task(check)
+        return self.concurrent_task(check)
 
     def get_images(self):
         shutil.rmtree(IMG_PATH)
