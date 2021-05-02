@@ -6,7 +6,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 17 * * *"
+    - cron: "30 20 * * *"
 
 jobs:
   publish-npm:
