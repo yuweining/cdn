@@ -31,9 +31,9 @@ class Bundle:
         api = 'https://{}.jsdelivr.net/npm/logicdn/logi.im/api/asset/data/bundle.json'
         for _ in range(5):
             try:
-                requests.get(api.format('purge'))
+                print(requests.get(api.format('purge')).text)
                 data = requests.get(api.format('cdn')).json()
-                pring(data)
+                print(data['date'])
                 if data['date'] == TODAY:
                     return
             except Exception:
