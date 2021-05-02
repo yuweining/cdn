@@ -33,8 +33,7 @@ jobs:
         run: |
           cd logi.im/api
           poetry install
-          poetry run python biz/friend.py
-          poetry run python biz/sentence.py
+          poetry run python index.py
 
       - name: Update version
         run: node --experimental-modules index.mjs
@@ -55,4 +54,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
       - name: Refresh cdn
-        run: bash refresh.sh
+        run: |
+          cd logi.im/api
+          poetry run python index.py r
