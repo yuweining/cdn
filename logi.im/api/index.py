@@ -30,10 +30,14 @@ class Bundle:
     def refresh():
         api = 'https://{}.jsdelivr.net/npm/logicdn/logi.im/api/asset/data/bundle.json'
         for _ in range(5):
-            requests.get(api.format('purge'))
-            if requests.get(api.format('cdn')).json()['date'] == TODAY:
-                return
-            time.sleep(60)
+            try:
+                requests.get(api.format('purge'))
+                data = requests.get(api.format('cdn')).json()
+                pring(data)
+                if data['date'] == TODAY:
+                    return
+            except Exception:
+                time.sleep(60)
 
 
 if __name__ == '__main__':
