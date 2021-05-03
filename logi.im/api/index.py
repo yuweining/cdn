@@ -37,7 +37,8 @@ class Bundle:
                 if data['date'] == TODAY:
                     return
             except Exception:
-                time.sleep(60)
+                pass
+            time.sleep(60)
 
 
 if __name__ == '__main__':
