@@ -90,7 +90,7 @@
     "name": "饭饭's Blog"
   },
   {
-    "avatar": "https://cdn.jsdelivr.net/gh/wobisheng/wobisheng.github.io@master/icon.png",
+    "avatar": "https://cdn.jsdelivr.net/gh/wobisheng/wobisheng.github.io/icon.png",
     "link": "https://wobisheng.github.io",
     "name": "发明家的小站"
   },
@@ -100,7 +100,7 @@
     "name": "陈 YF 的博客"
   },
   {
-    "avatar": "https://cdn.jsdelivr.net/gh/leicancun/JSCDN@main/images/circle-cropped.webp",
+    "avatar": "https://cdn.jsdelivr.net/gh/leicancun/JSCDN/images/circle-cropped.webp",
     "link": "https://www.myql.xyz",
     "name": "暮雨千泷"
   },
@@ -298,5 +298,10 @@
     "avatar": "https://www.codelin.site/favicon.png",
     "link": "https://codelin.site",
     "name": "追梦者个人博客"
+  },
+  {
+    "avatar": "https://www.impasse.top/medias/avatars/avatar.jpg",
+    "link": "https://www.impasse.top",
+    "name": "万能的小江"
   }
 ]
