@@ -14,7 +14,7 @@ from PIL import Image
 TIME_OUT = 20
 MAX_TRY = 6
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
-WHITE_LIST = ["myql.xyz", "zpblogs.cn", "imwen.cn"]
+WHITE_LIST = ['myql.xyz', 'zpblogs.cn', 'imwen.cn', 'monsterx.cn']
 
 CONF_PATH = 'asset/data/friend.json'
 CONF_HANDLED_PATH = 'asset/data/friend-handled.json'
