@@ -11,10 +11,10 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 from PIL import Image
 
-TIME_OUT = 20
-MAX_TRY = 6
+TIME_OUT = 10
+MAX_TRY = 10
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
-WHITE_LIST = ["myql.xyz", "zpblogs.cn", "imwen.cn"]
+WHITE_LIST = []
 
 CONF_PATH = 'asset/data/friend.json'
 CONF_HANDLED_PATH = 'asset/data/friend-handled.json'
@@ -33,10 +33,12 @@ class FriendLinkDoctor:
 
     @staticmethod
     def get(url, **args):
+        requests.packages.urllib3.disable_warnings()
         return requests.get(
             url,
             timeout=TIME_OUT,
             headers={"User-Agent": USER_AGENT},
+            verify=False,
             **args
         )
 
@@ -53,7 +55,6 @@ class FriendLinkDoctor:
 
     @staticmethod
     def save_image(friend):
-        requests.packages.urllib3.disable_warnings()
         link = friend['link']
 
         def save():
@@ -88,15 +89,14 @@ class FriendLinkDoctor:
         url_404 = f'{url}/not-exists/be4b3658-2045-4468-8530-cc11c2145849'
         error_text = 'www.beian.miit.gov.cn/state/outPortal/loginPortal.action'
 
-        def req():
-            if (FriendLinkDoctor.get(url_404).text.find(error_text) == -1):
-                return True
-            print(f'offline: {url}')
-            return False
-
         def fail():
             print(f'offline: {url}')
             return False
+
+        def req():
+            if (FriendLinkDoctor.get(url_404).text.find(error_text) == -1):
+                return True
+            return fail()
 
         return FriendLinkDoctor.try_your_best(req, fail)
 
