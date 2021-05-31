@@ -6,7 +6,7 @@ from datetime import datetime
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
-DATA_PATH = 'asset/data/sentence.json'
+DATA_PATH = 'asset/data/sentences.json'
 iPhone = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'
 
 

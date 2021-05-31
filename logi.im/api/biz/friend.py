@@ -16,8 +16,8 @@ MAX_TRY = 3
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
 WHITE_LIST = ['dianr.cn']
 
-CONF_PATH = 'asset/data/friend.json'
-CONF_HANDLED_PATH = 'asset/data/friend-handled.json'
+CONF_PATH = 'asset/data/friends.json'
+CONF_HANDLED_PATH = 'asset/data/friends-cached.json'
 IMG_PATH = 'asset/img'
 
 
@@ -61,10 +61,10 @@ class FriendLinkDoctor:
 
     @staticmethod
     def save_image(friend):
+        requests.packages.urllib3.disable_warnings()
         link = friend['link']
 
         def save():
-            requests.packages.urllib3.disable_warnings()
             resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
 
             path = urlsplit(friend['avatar']).path
@@ -75,8 +75,14 @@ class FriendLinkDoctor:
                 if suffix == 'jpeg':
                     suffix = 'jpg'
 
-            name = f'{IMG_PATH}/{urlsplit(link).netloc}.{suffix}'
+            prefix = f'{IMG_PATH}/{urlsplit(link).netloc}'
 
+            for img in os.listdir(IMG_PATH):
+                if img.find(prefix) > -1:
+                    friend['avatar'] = img
+                    return friend
+
+            name = f'{prefix}.{suffix}'
             img = Image.open(io.BytesIO(resp.content))
             img.thumbnail((200, 200))
             img.save(name)
