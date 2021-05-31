@@ -14,7 +14,7 @@ from PIL import Image
 TIME_OUT = 15
 MAX_TRY = 4
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
-WHITE_LIST = []
+WHITE_LIST = ['dianr.cn']
 
 CONF_PATH = 'asset/data/friend.json'
 CONF_HANDLED_PATH = 'asset/data/friend-handled.json'
@@ -48,7 +48,7 @@ class FriendLinkDoctor:
             except Exception as e:
                 msg = str(e)
                 if msg.find('get local issuer certificate') > -1:
-                    return True
+                    return False
                 elif msg.find('certificate has expired') > -1:
                     return False
                 elif msg.find('doesn\'t match') > -1:
