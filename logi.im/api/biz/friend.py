@@ -48,11 +48,11 @@ class FriendLinkDoctor:
             except Exception as e:
                 msg = str(e)
                 if msg.find('get local issuer certificate') > -1:
-                    return False
+                    return fail()
                 elif msg.find('certificate has expired') > -1:
-                    return False
+                    return fail()
                 elif msg.find('doesn\'t match') > -1:
-                    return False
+                    return fail()
                 print(e)
                 time.sleep(random.randint(2, 5))
                 pass
