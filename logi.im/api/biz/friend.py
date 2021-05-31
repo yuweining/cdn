@@ -11,8 +11,8 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 from PIL import Image
 
-TIME_OUT = 20
-MAX_TRY = 5
+TIME_OUT = 30
+MAX_TRY = 6
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
 WHITE_LIST = []
 
@@ -48,6 +48,7 @@ class FriendLinkDoctor:
             except Exception as e:
                 if str(e).find('get local issuer certificate') > -1:
                     return True
+                print(e)
                 time.sleep(random.randint(2, 5))
                 pass
 
@@ -58,6 +59,7 @@ class FriendLinkDoctor:
         link = friend['link']
 
         def save():
+            requests.packages.urllib3.disable_warnings()
             resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
 
             path = urlsplit(friend['avatar']).path
