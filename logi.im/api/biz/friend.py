@@ -11,8 +11,8 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 from PIL import Image
 
-TIME_OUT = 10
-MAX_TRY = 10
+TIME_OUT = 20
+MAX_TRY = 5
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
 WHITE_LIST = []
 
@@ -33,12 +33,10 @@ class FriendLinkDoctor:
 
     @staticmethod
     def get(url, **args):
-        requests.packages.urllib3.disable_warnings()
         return requests.get(
             url,
             timeout=TIME_OUT,
             headers={"User-Agent": USER_AGENT},
-            verify=False,
             **args
         )
 
@@ -47,7 +45,9 @@ class FriendLinkDoctor:
         for _ in range(MAX_TRY):
             try:
                 return fn()
-            except Exception:
+            except Exception as e:
+                if str(e).find('get local issuer certificate') > -1:
+                    return True
                 time.sleep(random.randint(2, 5))
                 pass
 
@@ -112,7 +112,7 @@ class FriendLinkDoctor:
             )
 
     def concurrent_task(self, fn):
-        futures, pool = [], ThreadPoolExecutor(len(self.friends))
+        futures, pool = [], ThreadPoolExecutor(10)
         for friend in self.friends:
             futures.append(pool.submit(fn, friend))
 
