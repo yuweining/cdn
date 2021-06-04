@@ -146,6 +146,7 @@ class FriendLinkDoctor:
 
     def get_images(self):
         if os.path.exists(IMG_PATH):
+            shutil.copytree(IMG_PATH, IMG_PATH + '_copied')
             shutil.rmtree(IMG_PATH)
         os.mkdir(IMG_PATH)
 
