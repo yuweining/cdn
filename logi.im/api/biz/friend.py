@@ -114,7 +114,7 @@ class FriendLinkDoctor:
         return FriendLinkDoctor.try_your_best(req, fail)
 
     def save_config(self, results):
-        random.shuffle(results)
+        # random.shuffle(results)
         with open(CONF_HANDLED_PATH, mode='w', encoding='utf-8') as f:
             json.dump(
                 results,
@@ -145,7 +145,8 @@ class FriendLinkDoctor:
         return self.concurrent_task(check)
 
     def get_images(self):
-        shutil.rmtree(IMG_PATH)
+        if os.path.exists(IMG_PATH):
+            shutil.rmtree(IMG_PATH)
         os.mkdir(IMG_PATH)
 
         self.concurrent_task(self.save_image)
