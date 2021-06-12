@@ -17,16 +17,13 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 WHITE_LIST = ['dianr.cn']
 
 CONF_PATH = 'asset/data/friends.json'
-CONF_HANDLED_PATH = 'asset/data/friends-cached.json'
+CONF_CACHED_PATH = 'asset/data/friends-cached.json'
 IMG_PATH = 'asset/img'
 
 
 class FriendLinkDoctor:
     def __init__(self, init=False):
-        if init:
-            conf = CONF_PATH
-        else:
-            conf = CONF_HANDLED_PATH
+        conf = CONF_PATH if init else CONF_CACHED_PATH
 
         with open(conf, mode='r', encoding='utf-8') as f:
             self.friends = json.load(f)
@@ -52,6 +49,8 @@ class FriendLinkDoctor:
                 elif msg.find('certificate has expired') > -1:
                     return fail()
                 elif msg.find('doesn\'t match') > -1:
+                    return fail()
+                elif msg.find('Name or service not known') > -1:
                     return fail()
                 print(e)
                 time.sleep(random.randint(2, 5))
@@ -107,7 +106,7 @@ class FriendLinkDoctor:
             return False
 
         def req():
-            if (FriendLinkDoctor.get(url_404).text.find(error_text) == -1):
+            if FriendLinkDoctor.get(url_404).text.find(error_text) == -1:
                 return True
             return fail()
 
@@ -115,7 +114,7 @@ class FriendLinkDoctor:
 
     def save_config(self, results):
         # random.shuffle(results)
-        with open(CONF_HANDLED_PATH, mode='w', encoding='utf-8') as f:
+        with open(CONF_CACHED_PATH, mode='w', encoding='utf-8') as f:
             json.dump(
                 results,
                 f,

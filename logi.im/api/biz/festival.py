@@ -49,7 +49,8 @@ def save(y):
     })
 
     holiday = get_json(api['holiday'], lambda d: list(
-        filter(lambda e: e['year'] == y, d['holiday']))[0])
+        filter(lambda e: e['year'] == y, d['holiday'])
+    )[0])
 
     with open(CONF_PATH, 'w') as f:
         f.write(json.dumps({
