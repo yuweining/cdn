@@ -50,6 +50,8 @@ class FriendLinkDoctor:
                     return fail()
                 elif msg.find('doesn\'t match') > -1:
                     return fail()
+                elif msg.find('No address associated with hostname') > -1:
+                    return fail()
                 elif msg.find('Name or service not known') > -1:
                     return fail()
                 print(e)
