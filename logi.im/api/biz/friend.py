@@ -5,6 +5,7 @@ import time
 import json
 import shutil
 import random
+from datetime import datetime
 from urllib.parse import urlsplit
 from concurrent.futures import ThreadPoolExecutor
 
@@ -15,6 +16,7 @@ TIME_OUT = 20
 MAX_TRY = 3
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
 WHITE_LIST = ['dianr.cn']
+TODAY = datetime.today().strftime('%Y-%m-%d')
 
 CONF_PATH = 'asset/data/friends.json'
 CONF_CACHED_PATH = 'asset/data/friends-cached.json'
@@ -53,6 +55,8 @@ class FriendLinkDoctor:
                 elif msg.find('No address associated with hostname') > -1:
                     return fail()
                 elif msg.find('Name or service not known') > -1:
+                    return fail()
+                elif msg.find('getaddrinfo failed') > -1:
                     return fail()
                 print(e)
                 time.sleep(random.randint(2, 5))
@@ -122,7 +126,7 @@ class FriendLinkDoctor:
                 f,
                 ensure_ascii=False,
                 sort_keys=True,
-                indent=4
+                indent=2
             )
 
     def concurrent_task(self, fn):
@@ -140,7 +144,8 @@ class FriendLinkDoctor:
 
     def check_boby(self):
         def check(friend):
-            friend['online'] = self.is_online(friend['link'])
+            if self.is_online(friend['link']):
+                friend['lastOnlineDate'] = TODAY
             return friend
 
         return self.concurrent_task(check)
