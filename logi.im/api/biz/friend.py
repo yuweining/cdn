@@ -120,9 +120,17 @@ class FriendLinkDoctor:
 
     def save_config(self, results):
         # random.shuffle(results)
-        with open(CONF_CACHED_PATH, mode='w', encoding='utf-8') as f:
+
+        def retrieve_online_date(link, old_data):
+            old = list(filter(lambda l: l['link'] == link['link'], old_data))
+            if len(old) == 1:
+                link['lastOnlineDate'] = old[0]['lastOnlineDate']
+            return link
+
+        with open(CONF_CACHED_PATH, mode='w+', encoding='utf-8') as f:
+            old_data = json.load(f)
             json.dump(
-                results,
+                list(map(lambda link: retrieve_online_date(link, old_data))),
                 f,
                 ensure_ascii=False,
                 sort_keys=True,
