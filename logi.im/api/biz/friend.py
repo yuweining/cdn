@@ -25,6 +25,7 @@ IMG_PATH = 'asset/img'
 
 class FriendLinkDoctor:
     def __init__(self, init=False):
+        self.init = init
         conf = CONF_PATH if init else CONF_CACHED_PATH
 
         with open(conf, mode='r', encoding='utf-8') as f:
@@ -119,20 +120,22 @@ class FriendLinkDoctor:
         return FriendLinkDoctor.try_your_best(req, fail)
 
     def save_config(self, results):
-        def retrieve_online_date(friend, old_result):
-            old_friend = list(
-                filter(lambda old_friend: old_friend['link'] == friend['link'], old_result))
-            if len(old_friend) == 1 and 'lastOnlineDate' in old_friend[0]:
-                friend['lastOnlineDate'] = old_friend[0]['lastOnlineDate']
-            return friend
+        if self.init:
+            def retrieve_online_date(friend, old_result):
+                old_friend = list(
+                    filter(lambda old_friend: old_friend['link'] == friend['link'], old_result))
+                if len(old_friend) == 1 and 'lastOnlineDate' in old_friend[0]:
+                    friend['lastOnlineDate'] = old_friend[0]['lastOnlineDate']
+                return friend
 
-        with open(CONF_CACHED_PATH, mode='r', encoding='utf-8') as f:
-            old_result = json.load(f)
+            with open(CONF_CACHED_PATH, mode='r', encoding='utf-8') as f:
+                old_result = json.load(f)
+                results = list(map(lambda friend: retrieve_online_date(
+                    friend, old_result), results))
 
         with open(CONF_CACHED_PATH, mode='w', encoding='utf-8') as f:
             json.dump(
-                list(map(lambda friend: retrieve_online_date(
-                    friend, old_result), results)),
+                results,
                 f,
                 ensure_ascii=False,
                 sort_keys=True,
