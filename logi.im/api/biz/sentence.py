@@ -128,7 +128,11 @@ class Api(object):
         })
 
     def pure_data(self):
-        return list(s.data for s in self.sentences)
+        for _ in range(3):
+            try:
+                return list(s.data for s in self.sentences)
+            except Exception:
+                pass
 
 
 if __name__ == '__main__':
