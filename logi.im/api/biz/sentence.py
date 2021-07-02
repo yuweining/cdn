@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-import json
 import re
+import json
+import time
+import random
 from datetime import datetime
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -73,6 +75,15 @@ class Sentence(object):
 
 class Api(object):
     def __init__(self):
+        for _ in range(3):
+            try:
+                self.retrieve()
+                break
+            except Exception:
+                time.sleep(random.randint(1, 3))
+                pass
+
+    def retrieve(self):
         self.sentences = [
             Sentence('hici',
                      'http://m.dict.cn/daily.php',
@@ -128,17 +139,8 @@ class Api(object):
         })
 
     def pure_data(self):
-        for _ in range(3):
-            try:
-                return list(s.data for s in self.sentences)
-            except Exception:
-                pass
+        return list(s.data for s in self.sentences)
 
 
 if __name__ == '__main__':
-    for _ in range(3):
-        try:
-            Api().save()
-            break
-        except Exception:
-            pass
+    Api().save()
