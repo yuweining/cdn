@@ -72,7 +72,7 @@
     "name": "闻语博客"
   },
   {
-    "avatar": "asset/img/www.geeklife.top.png",
+    "avatar": "https://i.sevencdn.com/www.geeklife.top/logo2.png",
     "lastOnlineDate": "2021-06-29",
     "link": "https://www.geeklife.top",
     "name": "极客生活"
@@ -348,7 +348,7 @@
     "name": "残夜博客"
   },
   {
-    "avatar": "asset/img/blog.txzhou.com.png",
+    "avatar": "https://cdn.txzhou.com/img/20200423191356.png",
     "lastOnlineDate": "2021-06-10",
     "link": "https://blog.txzhou.com",
     "name": "周天翔的博客"
@@ -376,5 +376,10 @@
     "lastOnlineDate": "2021-07-10",
     "link": "https://wenchong.space",
     "name": "雨中的博客"
+  },
+  {
+    "avatar": "asset/img/www.bedebug.com.jpg",
+    "link": "https://www.bedebug.com",
+    "name": "在码圈"
   }
 ]
