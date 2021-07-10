@@ -75,6 +75,7 @@ class FriendLinkDoctor:
     def save_image(friend):
         requests.packages.urllib3.disable_warnings()
         link = friend['link']
+        identity = urlsplit(link).netloc
 
         def save():
             resp = FriendLinkDoctor.get(friend['avatar'], verify=False)
@@ -87,22 +88,21 @@ class FriendLinkDoctor:
                 if suffix == 'jpeg':
                     suffix = 'jpg'
 
-            prefix = f'{IMG_PATH}/{urlsplit(link).netloc}'
-
-            for img in os.listdir(IMG_PATH):
-                if img.find(prefix) > -1:
-                    friend['avatar'] = img
-                    return friend
-
-            name = f'{prefix}.{suffix}'
+            name = f'{IMG_PATH}/{identity}.{suffix}'
             img = Image.open(io.BytesIO(resp.content))
             img.thumbnail((200, 200))
             img.save(name)
             friend['avatar'] = name
 
-        FriendLinkDoctor.try_your_best(
-            save, lambda: print(f'failure: {link}')
-        )
+        def fail():
+            for img in os.listdir(IMG_PATH):
+                if img.find(identity) > -1:
+                    friend['avatar'] = f'{IMG_PATH}/{img}'
+                    print(f'failure, using cached file: {link}')
+                    return
+            print(f'failure: {link}')
+
+        FriendLinkDoctor.try_your_best(save, fail)
         return friend
 
     @staticmethod
@@ -172,8 +172,9 @@ class FriendLinkDoctor:
     def get_images(self):
         if os.path.exists(IMG_PATH):
             shutil.copytree(IMG_PATH, IMG_PATH + '_copied')
-            shutil.rmtree(IMG_PATH)
-        os.mkdir(IMG_PATH)
+            # shutil.rmtree(IMG_PATH)
+        else:
+            os.mkdir(IMG_PATH)
 
         self.concurrent_task(self.save_image)
 
