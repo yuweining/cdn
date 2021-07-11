@@ -15,7 +15,8 @@ from PIL import Image
 TIME_OUT = 20
 MAX_TRY = 3
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
-WHITE_LIST = ['dianr.cn', 'noheart.cn', 'get233.com', 'zpblogs.cn']
+WHITE_LIST = ['dianr.cn', 'noheart.cn',
+              'get233.com', 'zpblogs.cn', 'ax127.fun']
 TODAY = datetime.today().strftime('%Y-%m-%d')
 
 CONF_PATH = 'asset/data/friends.json'
@@ -157,7 +158,7 @@ class FriendLinkDoctor:
             )
 
     def concurrent_task(self, fn):
-        futures, pool = [], ThreadPoolExecutor(6)
+        futures, pool = [], ThreadPoolExecutor(5)
         for friend in self.friends:
             futures.append(pool.submit(fn, friend))
 
