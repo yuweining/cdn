@@ -40,6 +40,30 @@ class FriendLinkDoctor:
             **args
         )
 
+    """                 
+    msg = str(e)
+    if msg.find('get local issuer certificate') > -1:
+        return True
+    elif msg.find('certificate has expired') > -1:
+        return fail()
+    elif msg.find('sslv3 alert handshake failure') > -1:
+        return fail()
+    elif msg.find('Connection reset by peer') > -1:
+        return fail()
+    elif msg.find('length mismatch') > -1:
+        return fail()
+    elif msg.find('doesn\'t match') > -1:
+        return fail()
+    elif msg.find('Temporary failure in name resolution') > -1:
+        return fail()
+    elif msg.find('No address associated with hostname') > -1:
+        return fail()
+    elif msg.find('Name or service not known') > -1:
+        return fail()
+    elif msg.find('getaddrinfo failed') > -1:
+        return fail()
+    print(e) 
+    """
     @staticmethod
     def try_your_best(fn, fail):
         for _ in range(MAX_TRY):
@@ -49,23 +73,6 @@ class FriendLinkDoctor:
                 msg = str(e)
                 if msg.find('get local issuer certificate') > -1:
                     return True
-                elif msg.find('certificate has expired') > -1:
-                    return fail()
-                elif msg.find('sslv3 alert handshake failure') > -1:
-                    return fail()
-                elif msg.find('length mismatch') > -1:
-                    return fail()
-                elif msg.find('doesn\'t match') > -1:
-                    return fail()
-                elif msg.find('Temporary failure in name resolution') > -1:
-                    return fail()
-                elif msg.find('No address associated with hostname') > -1:
-                    return fail()
-                elif msg.find('Name or service not known') > -1:
-                    return fail()
-                elif msg.find('getaddrinfo failed') > -1:
-                    return fail()
-                print(e)
                 time.sleep(random.randint(2, 5))
                 pass
 
@@ -111,7 +118,8 @@ class FriendLinkDoctor:
             if url.find(host) > 0:
                 return True
 
-        url_404 = f'{url}/not-exists/be4b3658-2045-4468-8530-cc11c2145849'
+        # url_404 = f'{url}/not-exists/be4b3658-2045-4468-8530-cc11c2145849'
+        url_404 = f'{url}'
         error_text = 'www.beian.miit.gov.cn/state/outPortal/loginPortal.action'
 
         def fail():
@@ -149,7 +157,7 @@ class FriendLinkDoctor:
             )
 
     def concurrent_task(self, fn):
-        futures, pool = [], ThreadPoolExecutor(10)
+        futures, pool = [], ThreadPoolExecutor(8)
         for friend in self.friends:
             futures.append(pool.submit(fn, friend))
 
