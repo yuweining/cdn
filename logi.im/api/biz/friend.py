@@ -118,8 +118,7 @@ class FriendLinkDoctor:
             if url.find(host) > 0:
                 return True
 
-        # url_404 = f'{url}/not-exists/be4b3658-2045-4468-8530-cc11c2145849'
-        url_404 = f'{url}'
+        url_404 = f'{url}/not-exists/be4b3658-2045-4468-8530-cc11c2145849'
         error_text = 'www.beian.miit.gov.cn/state/outPortal/loginPortal.action'
 
         def fail():
@@ -157,7 +156,7 @@ class FriendLinkDoctor:
             )
 
     def concurrent_task(self, fn):
-        futures, pool = [], ThreadPoolExecutor(8)
+        futures, pool = [], ThreadPoolExecutor(6)
         for friend in self.friends:
             futures.append(pool.submit(fn, friend))
 
