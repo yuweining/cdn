@@ -15,7 +15,7 @@ from PIL import Image
 TIME_OUT = 20
 MAX_TRY = 3
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
-WHITE_LIST = ['dianr.cn', 'noheart.cn']
+WHITE_LIST = ['dianr.cn', 'noheart.cn', 'get233.com', 'zpblogs.cn']
 TODAY = datetime.today().strftime('%Y-%m-%d')
 
 CONF_PATH = 'asset/data/friends.json'
@@ -73,6 +73,7 @@ class FriendLinkDoctor:
                 msg = str(e)
                 if msg.find('get local issuer certificate') > -1:
                     return True
+                print(msg)
                 time.sleep(random.randint(2, 5))
                 pass
 
