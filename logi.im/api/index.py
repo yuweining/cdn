@@ -33,7 +33,7 @@ class Bundle:
             try:
                 purge = requests.get(api.format('purge')).json()
                 data = requests.get(api.format('cdn')).json()
-                print(purge['success'], data['date'])
+                print(purge.get('status'), data['date'])
                 if data['date'] == TODAY:
                     return
             except Exception:
