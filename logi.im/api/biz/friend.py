@@ -116,10 +116,6 @@ class FriendLinkDoctor:
 
     @staticmethod
     def is_online(url):
-        for host in WHITE_LIST:
-            if url.find(host) > 0:
-                return True
-
         url_404 = f'{url}/not-exists/be4b3658-2045-4468-8530-cc11c2145849'
         error_text = 'www.beian.miit.gov.cn/state/outPortal/loginPortal.action'
 
@@ -172,6 +168,12 @@ class FriendLinkDoctor:
 
     def check_boby(self):
         def check(friend):
+            for host in WHITE_LIST:
+                if friend['link'].find(host) > 0:
+                    friend['lastOnlineDate'] = TODAY
+                    friend['untracked'] = True
+                    return friend
+
             if self.is_online(friend['link']):
                 friend['lastOnlineDate'] = TODAY
             return friend
