@@ -1,6 +1,6 @@
 {
   "name": "logicdn",
-  "version": "1.0.371",
+  "version": "1.0.372",
   "description": "Static CDN for Personal Use",
   "main": "index.mjs",
   "repository": {
