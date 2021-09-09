@@ -39,8 +39,7 @@
     "avatar": "asset/img/get233.com.jpg",
     "lastOnlineDate": "2021-09-09",
     "link": "https://get233.com",
-    "name": "HRAN",
-    "untracked": true
+    "name": "HRAN"
   },
   {
     "avatar": "asset/img/blog.frytea.com.png",
@@ -70,8 +69,7 @@
     "avatar": "asset/img/www.zpblogs.cn.png",
     "lastOnlineDate": "2021-09-09",
     "link": "https://www.zpblogs.cn",
-    "name": "闻语博客",
-    "untracked": true
+    "name": "闻语博客"
   },
   {
     "avatar": "asset/img/www.geeklife.top.png",
@@ -92,7 +90,7 @@
     "name": "散逸"
   },
   {
-    "avatar": "asset/img/5a.gs.jpg",
+    "avatar": "asset/img/5a.gs.png",
     "lastOnlineDate": "2021-09-09",
     "link": "https://5a.gs",
     "name": "阿殇"
@@ -131,15 +129,13 @@
     "avatar": "asset/img/dianr.cn.jpg",
     "lastOnlineDate": "2021-09-09",
     "link": "https://dianr.cn",
-    "name": "点儿博客",
-    "untracked": true
+    "name": "点儿博客"
   },
   {
     "avatar": "asset/img/noheart.cn.jpg",
     "lastOnlineDate": "2021-09-09",
     "link": "https://noheart.cn",
-    "name": "今今今生",
-    "untracked": true
+    "name": "今今今生"
   },
   {
     "avatar": "asset/img/www.icelo.cn.png",
@@ -229,8 +225,7 @@
     "avatar": "asset/img/ax127.fun.png",
     "lastOnlineDate": "2021-09-09",
     "link": "https://ax127.fun",
-    "name": "不吃猫的鱼的鱼塘",
-    "untracked": true
+    "name": "不吃猫的鱼的鱼塘"
   },
   {
     "avatar": "asset/img/baozi.fun.jpg",
@@ -260,8 +255,7 @@
     "avatar": "asset/img/xdym11235.com.png",
     "lastOnlineDate": "2021-09-09",
     "link": "https://xdym11235.com",
-    "name": "玉明",
-    "untracked": true
+    "name": "玉明"
   },
   {
     "avatar": "asset/img/blog.zeruns.tech.jpg",
@@ -400,5 +394,10 @@
     "lastOnlineDate": "2021-09-09",
     "link": "https://www.bookbook.cc",
     "name": "PengSir"
+  },
+  {
+    "avatar": "asset/img/www.sishui7.top.jpg",
+    "link": "https://www.sishui7.top",
+    "name": "似水的小屋"
   }
 ]
