@@ -246,15 +246,16 @@
   },
   {
     "avatar": "asset/img/savokiss.com.jpg",
-    "lastOnlineDate": "2021-09-22",
+    "lastOnlineDate": "2021-09-23",
     "link": "https://savokiss.com",
     "name": "守望之吻"
   },
   {
     "avatar": "asset/img/www.cnblogs.com.jpg",
-    "lastOnlineDate": "2021-09-22",
+    "lastOnlineDate": "2021-09-23",
     "link": "https://www.cnblogs.com/BNTang/",
-    "name": "BNTang"
+    "name": "BNTang",
+    "untracked": true
   },
   {
     "avatar": "asset/img/xdym11235.com.png",
