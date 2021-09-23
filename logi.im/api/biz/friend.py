@@ -201,8 +201,11 @@ class FriendLinkDoctor:
 
 if __name__ == '__main__':
     proxy_process = subprocess.Popen(["np","baidu"])
+    time.sleep(3)
+
     if len(sys.argv) != 1 and sys.argv[1] == 'init':
         FriendLinkDoctor(init=True).get_images()
     else:
         FriendLinkDoctor().check_boby()
+    
     proxy_process.terminate()
