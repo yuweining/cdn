@@ -200,13 +200,14 @@ class FriendLinkDoctor:
 
 
 if __name__ == '__main__':
-    os.system('chmod +x ./np')
-    proxy_process = subprocess.Popen(["./np","baidu"])
-    os.system('curl -s -o /dev/null -x ' + PROXY + ' http://www.baidu.com')
+    os.system('ls -l')
+    # os.system('chmod +x ./np')
+    # proxy_process = subprocess.Popen(["./np","baidu"])
+    # os.system('curl -s -o /dev/null -x ' + PROXY + ' http://www.baidu.com')
     
-    if len(sys.argv) != 1 and sys.argv[1] == 'init':
-        FriendLinkDoctor(init=True).get_images()
-    else:
-        FriendLinkDoctor().check_boby()
+    # if len(sys.argv) != 1 and sys.argv[1] == 'init':
+    #     FriendLinkDoctor(init=True).get_images()
+    # else:
+    #     FriendLinkDoctor().check_boby()
     
-    proxy_process.terminate()
+    # proxy_process.terminate()
