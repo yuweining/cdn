@@ -5,6 +5,7 @@ import time
 import json
 import shutil
 import random
+import subprocess
 from datetime import datetime
 from urllib.parse import urlsplit
 from concurrent.futures import ThreadPoolExecutor
@@ -14,9 +15,12 @@ from PIL import Image
 
 TIME_OUT = 20
 MAX_TRY = 3
+POOL_SIZE = 7
+PROXY = 'http://127.0.0.1:8888'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
-WHITE_LIST = ['imwen.cn', 'dianr.cn', 'noheart.cn',
-              'get233.com', 'zpblogs.cn', 'ax127.fun', 'xdym11235.com']
+# WHITE_LIST = ['imwen.cn', 'dianr.cn', 'noheart.cn',
+#               'get233.com', 'zpblogs.cn', 'ax127.fun', 'xdym11235.com']
+WHITE_LIST = ['cnblogs.com']
 TODAY = datetime.today().strftime('%Y-%m-%d')
 
 CONF_PATH = 'asset/data/friends.json'
@@ -26,18 +30,23 @@ IMG_PATH = 'asset/img'
 
 class FriendLinkDoctor:
     def __init__(self, init=False):
+        # self.proxy_process = subprocess.Popen(["./np","baidu"])
         self.init = init
         conf = CONF_PATH if init else CONF_CACHED_PATH
 
         with open(conf, mode='r', encoding='utf-8') as f:
             self.friends = json.load(f)
 
+    # def __del__(self):
+    #     self.proxy_process.kill()
+
     @staticmethod
     def get(url, **args):
         return requests.get(
             url,
             timeout=TIME_OUT,
-            headers={"User-Agent": USER_AGENT},
+            headers={'User-Agent': USER_AGENT,'X-Forwarded-For':'103.21.244.100'},
+            proxies={'http': PROXY,'https': PROXY},
             **args
         )
 
@@ -154,7 +163,7 @@ class FriendLinkDoctor:
             )
 
     def concurrent_task(self, fn):
-        futures, pool = [], ThreadPoolExecutor(5)
+        futures, pool = [], ThreadPoolExecutor(POOL_SIZE)
         for friend in self.friends:
             futures.append(pool.submit(fn, friend))
 
@@ -191,7 +200,9 @@ class FriendLinkDoctor:
 
 
 if __name__ == '__main__':
+    proxy_process = subprocess.Popen(["np","baidu"])
     if len(sys.argv) != 1 and sys.argv[1] == 'init':
         FriendLinkDoctor(init=True).get_images()
     else:
         FriendLinkDoctor().check_boby()
+    proxy_process.terminate()
