@@ -26,14 +26,17 @@ TODAY = datetime.today().strftime('%Y-%m-%d')
 CONF_PATH = 'asset/data/friends.json'
 CONF_CACHED_PATH = 'asset/data/friends-cached.json'
 IMG_PATH = 'asset/img'
+NP_PATH = 'asset/bin/np'
 
 
 class FriendLinkDoctor:
     def __init__(self, init=False):
-        # os.system('ls -l')
-        os.system('chmod +x ./np')
-        self.proxy_process = subprocess.Popen(["./np","baidu"])
-        os.system('curl -s -o /dev/null -x ' + PROXY + ' http://www.baidu.com')
+        if sys.platform.startswith('linux'):
+            # os.system('ls -l')
+            os.system(f'chmod +x {NP_PATH}')
+            self.proxy_process = subprocess.Popen([NP_PATH, "baidu"])
+            os.system('curl -s -o /dev/null -x ' +
+                      PROXY + ' http://www.baidu.com')
 
         self.init = init
         conf = CONF_PATH if init else CONF_CACHED_PATH
@@ -42,16 +45,18 @@ class FriendLinkDoctor:
             self.friends = json.load(f)
 
     def __del__(self):
-        self.proxy_process.terminate()
-        # self.proxy_process.kill()
+        if sys.platform.startswith('linux'):
+            self.proxy_process.terminate()
+            # self.proxy_process.kill()
 
     @staticmethod
     def get(url, **args):
         return requests.get(
             url,
             timeout=TIME_OUT,
-            headers={'User-Agent': USER_AGENT,'X-Forwarded-For':'103.21.244.100'},
-            proxies={'http': PROXY,'https': PROXY},
+            headers={'User-Agent': USER_AGENT,
+                     'X-Forwarded-For': '103.21.244.100'},
+            proxies={'http': PROXY, 'https': PROXY},
             **args
         )
 
@@ -204,7 +209,7 @@ class FriendLinkDoctor:
         self.concurrent_task(self.save_image)
 
 
-if __name__ == '__main__':    
+if __name__ == '__main__':
     if len(sys.argv) != 1 and sys.argv[1] == 'init':
         FriendLinkDoctor(init=True).get_images()
     else:
