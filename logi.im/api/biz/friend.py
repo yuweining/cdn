@@ -200,9 +200,10 @@ class FriendLinkDoctor:
 
 
 if __name__ == '__main__':
+    os.system('chmod +x np')
     proxy_process = subprocess.Popen(["np","baidu"])
-    time.sleep(3)
-
+    os.system('curl -s -o /dev/null -x ' + PROXY + ' http://www.baidu.com')
+    
     if len(sys.argv) != 1 and sys.argv[1] == 'init':
         FriendLinkDoctor(init=True).get_images()
     else:
