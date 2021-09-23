@@ -30,15 +30,20 @@ IMG_PATH = 'asset/img'
 
 class FriendLinkDoctor:
     def __init__(self, init=False):
-        # self.proxy_process = subprocess.Popen(["./np","baidu"])
+        # os.system('ls -l')
+        os.system('chmod +x ./np')
+        self.proxy_process = subprocess.Popen(["./np","baidu"])
+        os.system('curl -s -o /dev/null -x ' + PROXY + ' http://www.baidu.com')
+
         self.init = init
         conf = CONF_PATH if init else CONF_CACHED_PATH
 
         with open(conf, mode='r', encoding='utf-8') as f:
             self.friends = json.load(f)
 
-    # def __del__(self):
-    #     self.proxy_process.kill()
+    def __del__(self):
+        self.proxy_process.terminate()
+        # self.proxy_process.kill()
 
     @staticmethod
     def get(url, **args):
@@ -199,15 +204,8 @@ class FriendLinkDoctor:
         self.concurrent_task(self.save_image)
 
 
-if __name__ == '__main__':
-    os.system('ls -l')
-    # os.system('chmod +x ./np')
-    # proxy_process = subprocess.Popen(["./np","baidu"])
-    # os.system('curl -s -o /dev/null -x ' + PROXY + ' http://www.baidu.com')
-    
-    # if len(sys.argv) != 1 and sys.argv[1] == 'init':
-    #     FriendLinkDoctor(init=True).get_images()
-    # else:
-    #     FriendLinkDoctor().check_boby()
-    
-    # proxy_process.terminate()
+if __name__ == '__main__':    
+    if len(sys.argv) != 1 and sys.argv[1] == 'init':
+        FriendLinkDoctor(init=True).get_images()
+    else:
+        FriendLinkDoctor().check_boby()
