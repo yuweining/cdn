@@ -14,8 +14,8 @@ import requests
 from PIL import Image
 
 TIME_OUT = 20
-MAX_TRY = 3
-POOL_SIZE = 7
+MAX_TRY = 4
+POOL_SIZE = 5
 PROXY = 'http://127.0.0.1:8888'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
 # WHITE_LIST = ['imwen.cn', 'dianr.cn', 'noheart.cn',
