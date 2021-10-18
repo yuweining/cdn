@@ -90,7 +90,7 @@
     "name": "散逸"
   },
   {
-    "avatar": "asset/img/5a.gs.png",
+    "avatar": "asset/img/5a.gs.jpg",
     "lastOnlineDate": "2021-10-02",
     "link": "https://5a.gs",
     "name": "阿殇"
@@ -249,8 +249,7 @@
     "avatar": "asset/img/www.cnblogs.com.jpg",
     "lastOnlineDate": "2021-10-02",
     "link": "https://www.cnblogs.com/BNTang/",
-    "name": "BNTang",
-    "untracked": true
+    "name": "BNTang"
   },
   {
     "avatar": "asset/img/xdym11235.com.png",
@@ -431,5 +430,10 @@
     "lastOnlineDate": "2021-10-02",
     "link": "https://ryanyang.cn",
     "name": "ryan's space"
+  },
+  {
+    "avatar": "asset/img/kk.hackerjk.top.png",
+    "link": "https://kk.hackerjk.top",
+    "name": "小角落"
   }
 ]
