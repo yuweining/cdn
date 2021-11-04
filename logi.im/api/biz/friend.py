@@ -14,7 +14,7 @@ import requests
 from PIL import Image
 
 TIME_OUT = 20
-MAX_TRY = 4
+MAX_TRY = 3
 POOL_SIZE = 5
 PROXY = 'http://127.0.0.1:8888'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
@@ -94,7 +94,7 @@ class FriendLinkDoctor:
                 if msg.find('get local issuer certificate') > -1:
                     return True
                 print(msg)
-                time.sleep(random.randint(2, 5))
+                time.sleep(random.randint(5, 7))
                 pass
 
         return fail()
