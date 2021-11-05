@@ -18,8 +18,6 @@ MAX_TRY = 3
 POOL_SIZE = 5
 PROXY = 'http://127.0.0.1:8888'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
-# WHITE_LIST = ['imwen.cn', 'dianr.cn', 'noheart.cn',
-#               'get233.com', 'zpblogs.cn', 'ax127.fun', 'xdym11235.com']
 WHITE_LIST = ['cnblogs.com']
 TODAY = datetime.today().strftime('%Y-%m-%d')
 
@@ -55,7 +53,7 @@ class FriendLinkDoctor:
             url,
             timeout=TIME_OUT,
             headers={'User-Agent': USER_AGENT,
-                     'X-Forwarded-For': '103.21.244.100'},
+                     'X-Forwarded-For': '183.232.51.1'},
             proxies={'http': PROXY, 'https': PROXY},
             **args
         )

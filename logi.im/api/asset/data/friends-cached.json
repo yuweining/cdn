@@ -249,8 +249,7 @@
     "avatar": "asset/img/www.cnblogs.com.jpg",
     "lastOnlineDate": "2021-11-05",
     "link": "https://www.cnblogs.com/BNTang/",
-    "name": "BNTang",
-    "untracked": true
+    "name": "BNTang"
   },
   {
     "avatar": "asset/img/xdym11235.com.png",
@@ -449,5 +448,10 @@
     "lastOnlineDate": "2021-11-05",
     "link": "https://www.imcao.cn",
     "name": "ImCaO's Blog"
+  },
+  {
+    "avatar": "asset/img/www.zjh336.cn.png",
+    "link": "https://www.zjh336.cn",
+    "name": "华仔部落"
   }
 ]
