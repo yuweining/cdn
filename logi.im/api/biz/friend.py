@@ -15,7 +15,7 @@ from PIL import Image
 
 TIME_OUT = 20
 MAX_TRY = 3
-POOL_SIZE = 5
+POOL_SIZE = 6
 PROXY = 'http://127.0.0.1:8888'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
 WHITE_LIST = ['cnblogs.com']
@@ -53,7 +53,7 @@ class FriendLinkDoctor:
             url,
             timeout=TIME_OUT,
             headers={'User-Agent': USER_AGENT,
-                     'X-Forwarded-For': '104.16.0.0'},
+                     'X-Forwarded-For': '112.88.0.1, 162.158.0.1, 2606:4700::6810:85e5'},
             proxies={'http': PROXY, 'https': PROXY},
             **args
         )
@@ -91,7 +91,7 @@ class FriendLinkDoctor:
                 msg = str(e)
                 if msg.find('get local issuer certificate') > -1:
                     return True
-                print(msg)
+                # print(msg)
                 time.sleep(random.randint(5, 7))
                 pass
 
