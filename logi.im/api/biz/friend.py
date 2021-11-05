@@ -117,6 +117,20 @@ class FriendLinkDoctor:
             name = f'{IMG_PATH}/{identity}.{suffix}'
             img = Image.open(io.BytesIO(resp.content))
             img.thumbnail((200, 200))
+            width, height = img.size   # Get dimensions
+
+            if width != height:
+                new_width = min(width, height)
+                left = round((width - new_width)/2)
+                top = round((height - new_width)/2)
+                x_right = round(width - new_width) - left
+                x_bottom = round(height - new_width) - top
+                right = width - x_right
+                bottom = height - x_bottom
+
+                # Crop the center of the image
+                img = img.crop((left, top, right, bottom))
+
             img.save(name)
             friend['avatar'] = name
 
