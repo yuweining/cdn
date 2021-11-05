@@ -109,6 +109,7 @@
   },
   {
     "avatar": "asset/img/blog.wobisheng.top.png",
+    "lastOnlineDate": "2021-11-05",
     "link": "https://blog.wobisheng.top",
     "name": "发明家的小站"
   },
@@ -248,7 +249,8 @@
     "avatar": "asset/img/www.cnblogs.com.jpg",
     "lastOnlineDate": "2021-11-05",
     "link": "https://www.cnblogs.com/BNTang/",
-    "name": "BNTang"
+    "name": "BNTang",
+    "untracked": true
   },
   {
     "avatar": "asset/img/xdym11235.com.png",
