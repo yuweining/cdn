@@ -53,7 +53,7 @@ class FriendLinkDoctor:
             url,
             timeout=TIME_OUT,
             headers={'User-Agent': USER_AGENT,
-                     'X-Forwarded-For': '112.88.0.1, 162.158.0.1, 2606:4700::6810:85e5'},
+                     'X-Forwarded-For': '2606:4700::6810:85e5, 112.88.0.1, 162.158.0.1'},
             proxies={'http': PROXY, 'https': PROXY},
             **args
         )
