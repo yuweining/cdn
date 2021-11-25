@@ -24,7 +24,7 @@ TODAY = datetime.today().strftime('%Y-%m-%d')
 CONF_PATH = 'asset/data/friends.json'
 CONF_CACHED_PATH = 'asset/data/friends-cached.json'
 IMG_PATH = 'asset/img'
-NP_PATH = 'asset/bin/np'
+NP_PATH = 'asset/data/np'
 NP_URI = 'https://github.com/vcheckzen/normalize-http-proxy/raw/main/dist/np_linux_amd64'
 
 
@@ -47,6 +47,7 @@ class FriendLinkDoctor:
     def __del__(self):
         if sys.platform.startswith('linux'):
             self.proxy_process.terminate()
+            os.system(f'rm -f {NP_PATH}')
             # self.proxy_process.kill()
 
     @staticmethod
