@@ -32,7 +32,7 @@ class FriendLinkDoctor:
     def __init__(self, init=False):
         if sys.platform.startswith('linux'):
             # os.system('ls -l')
-            os.system(f'curl -s -o {NP_PATH} {NP_URI}')
+            os.system(f'curl -s -o {NP_PATH} -L {NP_URI}')
             os.system(f'chmod +x {NP_PATH}')
             self.proxy_process = subprocess.Popen([NP_PATH, "baidu"])
             os.system('curl -s -o /dev/null -x ' +
