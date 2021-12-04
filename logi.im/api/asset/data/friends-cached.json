@@ -249,8 +249,7 @@
     "avatar": "asset/img/www.cnblogs.com.jpg",
     "lastOnlineDate": "2021-12-04",
     "link": "https://www.cnblogs.com/BNTang/",
-    "name": "BNTang",
-    "untracked": true
+    "name": "BNTang"
   },
   {
     "avatar": "asset/img/xdym11235.com.png",
@@ -373,9 +372,8 @@
     "name": "Mr.c De Blog"
   },
   {
-    "avatar": "asset/img/wenchong.space.jpeg",
-    "lastOnlineDate": "2021-11-21",
-    "link": "https://wenchong.space",
+    "avatar": "asset/img/coolchong.cn.jpeg",
+    "link": "https://coolchong.cn",
     "name": "雨中的博客"
   },
   {
@@ -451,9 +449,14 @@
     "name": "ImCaO's Blog"
   },
   {
-    "avatar": "asset/img/www.zjh336.cn.png",
+    "avatar": "asset/img/www.zjh336.cn.ico",
     "lastOnlineDate": "2021-12-04",
     "link": "https://www.zjh336.cn",
     "name": "华仔部落"
+  },
+  {
+    "avatar": "asset/img/www.xiashangfushengruomeng.com.png",
+    "link": "https://www.xiashangfushengruomeng.com",
+    "name": "记录青春迹事！"
   }
 ]
