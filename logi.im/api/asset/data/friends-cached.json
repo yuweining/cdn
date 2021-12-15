@@ -144,9 +144,8 @@
     "name": "开心的 DCMickey"
   },
   {
-    "avatar": "asset/img/le360.cc.jpg",
-    "lastOnlineDate": "2021-12-15",
-    "link": "https://le360.cc",
+    "avatar": "asset/img/vimin.cc.png",
+    "link": "https://vimin.cc",
     "name": "XIAOMING'S BLOG"
   },
   {
@@ -219,8 +218,7 @@
     "avatar": "asset/img/www.cnblogs.com.jpg",
     "lastOnlineDate": "2021-12-15",
     "link": "https://www.cnblogs.com/BNTang/",
-    "name": "BNTang",
-    "untracked": true
+    "name": "BNTang"
   },
   {
     "avatar": "asset/img/xdym11235.com.png",
@@ -271,7 +269,7 @@
     "name": "Arien"
   },
   {
-    "avatar": "asset/img/www.dejavu.moe.png",
+    "avatar": "asset/img/www.dejavu.moe.jpg",
     "lastOnlineDate": "2021-12-15",
     "link": "https://www.dejavu.moe",
     "name": "Dejavu's Blog"
@@ -407,5 +405,10 @@
     "lastOnlineDate": "2021-12-15",
     "link": "http://www.xqcoding.com",
     "name": "小强编码"
+  },
+  {
+    "avatar": "asset/img/www.yunyuwu.cn.png",
+    "link": "https://www.yunyuwu.cn",
+    "name": "云与雾 & Blog"
   }
 ]
